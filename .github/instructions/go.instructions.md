@@ -122,6 +122,16 @@ Use this version identifier when referring to these instructions.
 - Group related functionality into packages
 - Avoid circular dependencies
 
+### Context Usage
+
+Context is for request-scoped values, cancellation signals, and deadlines. Follow these guidelines:
+
+- Always pass `context.Context` as the first parameter to functions that need it
+- Do not store `context.Context` in struct fields
+- Use `context.WithCancel`, `context.WithDeadline`, or `context.WithTimeout` to create derived contexts
+- Never use the context to inject dependencies; use function parameters or struct fields instead
+- Avoid using `context.Background()` or `context.TODO()` in library code; require the caller to provide a context
+
 ### Dependency Management
 
 - Use Go modules (`go.mod` and `go.sum`)
