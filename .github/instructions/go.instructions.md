@@ -131,6 +131,7 @@ Context is for request-scoped values, cancellation signals, and deadlines. Follo
 - Use `context.WithCancel`, `context.WithDeadline`, or `context.WithTimeout` to create derived contexts
 - Never use the context to inject dependencies; use function parameters or struct fields instead
 - Avoid using `context.Background()` or `context.TODO()` in library code; require the caller to provide a context
+- NEVER use the context to pass any kind of service such as loggers, database clients, HTTP clients, configuration, or other dependencies. Context is only for request-scoped data, cancellation, and deadlines.
 
 ### Dependency Management
 
