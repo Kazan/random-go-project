@@ -112,7 +112,55 @@ Use this version identifier when referring to these instructions.
 
 ## Architecture and Project Structure
 
+#### Module & Version
+
+- Always confirm or set: go.mod must declare the module path and Go version.
+- Target the Go version in go.mod; ask if missing.
+
+## Package Placement (Decision Tree)
+
+1. Is this repository a standalone library (no cmd/, meant for external import)?
+   -> Put code at repository root (e.g. requestid.go, package name matches directory if multiple files).
+   -> Do NOT create pkg/ for this case.
+2. Is this a full application with commands in cmd/ and reusable internal pieces?
+   -> Shared externally-safe packages go in pkg/ (must not import other local app packages).
+   -> Non-exported app-only code goes in internal/.
+3. Multi-module repo?
+   -> Each library gets its own subdirectory with its own go.mod.
+
+## Rules (Explicit)
+
+- Standalone library: root-level Go files only; avoid pkg/, internal/.
+- Application: main packages in cmd/<appname>.
+- pkg/ is ONLY for reusable packages inside an application repo; NEVER move a standalone library there.
+- Do not create pkg/requestid if requestid is the primary library of the repo.
+- Avoid circular dependencies.
+
+## Middleware / Library Guidance
+
+- Keep minimal public surface.
+- No hidden side effects.
+- Accept dependencies via parameters (e.g. \*slog.Logger).
+- Avoid generating IDs if instruction says “use existing context values only”.
+
+## Naming
+
+- Package name should be short, lower-case, no underscores.
+- If the repository is solely a library, prefer matching repo name when sensible.
+
+## Clarification Examples
+
+- GOOD (standalone library): /requestid.go (package requestid)
+- WRONG (standalone library): /pkg/requestid/requestid.go
+- GOOD (app with multiple reusable components): /pkg/cache/, /internal/config/, /cmd/api/main.go
+
+## When Unsure
+
+- Ask explicitly: “Is this repository a standalone library or an application?”
+
 ### Package Organization
+
+#### Application Structure
 
 - Follow standard Go project layout conventions
 - Keep `main` packages in `cmd/` directory
