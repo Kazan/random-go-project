@@ -9,7 +9,7 @@ tools:
   - "search"
 ---
 
-Our task is to generate an [implementation plan](../../plan.md) for a new feature or for refactoring existing code. Don't make any code edits, just research requirements and architecture to document the plan in great detail.
+Our task is to generate an [implementation plan](../../plan.md) for a new feature or for refactoring existing code. Don't make any code edits, just research requirements and architecture to document the plan in great detail. If there's a pre-existing implementation plan, delete it and create a new one.
 
 Follow the instructions in [go.instructions.md](../instructions/go.instructions.md) and [go-patterns.instructions.md](../instructions/go-patterns.instructions.md) to ensure best practices are followed in the implementation plan.
 
