@@ -4,7 +4,6 @@ tools:
    -  "edit",
    -  "search",
    -  "runCommands",
-   -  "mcp-gopls/*",
    -  "upstash/context7/*",
    -  "github/github-mcp-server/*",
    -  "fetch",

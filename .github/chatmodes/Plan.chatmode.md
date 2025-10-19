@@ -11,6 +11,8 @@ tools:
 
 Our task is to generate an [implementation plan](../../plan.md) for a new feature or for refactoring existing code. Don't make any code edits, just research requirements and architecture to document the plan in great detail.
 
+Follow the instructions in [go.instructions.md](../instructions/go.instructions.md) and [go-patterns.instructions.md](../instructions/go-patterns.instructions.md) to ensure best practices are followed in the implementation plan.
+
 The implementation plan consists of the following sections:
 
 - Overview: A brief description of the feature or refactoring task.
