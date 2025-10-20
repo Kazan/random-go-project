@@ -7,12 +7,6 @@ applyTo: "**/*.go,**/go.mod,**/go.sum"
 
 Follow idiomatic Go practices and community standards when writing Go code. These instructions are based on [Effective Go](https://go.dev/doc/effective_go), [Go Code Review Comments](https://go.dev/wiki/CodeReviewComments), and [Google's Go Style Guide](https://google.github.io/styleguide/go/).
 
-## Version of these instructions
-
-Use this version identifier when referring to these instructions.
-
-- Version: 1
-
 ## General Instructions
 
 - Write simple, clear, and idiomatic Go code
@@ -133,7 +127,7 @@ Use this version identifier when referring to these instructions.
 - Standalone library: root-level Go files only; avoid pkg/, internal/.
 - Application: main packages in cmd/<appname>.
 - pkg/ is ONLY for reusable packages inside an application repo; NEVER move a standalone library there.
-- Do not create pkg/requestid if requestid is the primary library of the repo.
+- Do not create pkg/<requestid> if <requestid> is the primary library of the repo.
 - Avoid circular dependencies.
 
 ## Middleware / Library Guidance
@@ -179,7 +173,7 @@ Context is for request-scoped values, cancellation signals, and deadlines. Follo
 - Use `context.WithCancel`, `context.WithDeadline`, or `context.WithTimeout` to create derived contexts
 - Never use the context to inject dependencies; use function parameters or struct fields instead
 - Avoid using `context.Background()` or `context.TODO()` in library code; require the caller to provide a context
-- NEVER use the context to pass any kind of service such as loggers, database clients, HTTP clients, configuration, or other dependencies. Context is only for request-scoped data, cancellation, and deadlines.
+- **NEVER** use the context to pass any kind of service such as loggers, database clients, HTTP clients, configuration, or other dependencies. Context is only for request-scoped data, cancellation, and deadlines.
 
 ### Dependency Management
 
@@ -188,6 +182,10 @@ Context is for request-scoped values, cancellation signals, and deadlines. Follo
 - Regularly update dependencies for security patches
 - Use `go mod tidy` to clean up unused dependencies
 - Vendor dependencies only when necessary
+
+## Library/Packages usage
+
+ALWAYS use #upstash/context7/* to gather up to date information about libraries usage.
 
 ## Type Safety and Language Features
 
