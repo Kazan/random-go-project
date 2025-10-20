@@ -357,7 +357,7 @@ Context is for request-scoped values, cancellation signals, and deadlines. Follo
 - Name tests descriptively using `TestFunctionNameScenario`
 - Use subtests with `t.Run` for better organization
 - Test both success and error cases
-- **ALWAYS** use `testify` library for test assertions and requirements, do not use only the standard library testing package
+- **ALWAYS** use `stretcher/testify` library for test assertions and requirements, do not use only the standard library testing package
 
 ### Test Helpers
 
