@@ -1,5 +1,14 @@
 ---
-mode: agent
+mode: Implement.Go
+tools:
+   - "edit",
+   - "search",
+   - "runCommands",
+   - "upstash/context7/*",
+   - "problems",
+   - "fetch",
+   - "githubRepo",
+   - "todos",
 ---
 
 Check if there's an [implementation plan](../../plan.md) and follow it closely. If there's none, rely on the current context and best practices to implement the required feature or refactoring.
@@ -18,8 +27,7 @@ General rules:
 • Prefer minimal, cohesive commits; avoid drive-by unrelated refactors.
 
 External packages/libraries:
-• Use #upstash/context7/* to gather up to date information about any external libraries usage before writing code that uses them.
-• Include relevant usage examples in your implementation plan.
+• Use #upstash/context7/\* to gather up to date information about any external libraries usage and examples before writing code that uses them.
 
 Kickoff phrase:
 Before starting, output exactly: I'm going all in! — then begin execution.

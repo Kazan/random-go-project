@@ -1,0 +1,1 @@
+a library to serve as an http middleware which logs request ids via slog, keep it as single as possible, we will just use whatever is already in the Request Context and will not attempt to generate it. The request id will be extracted from a context key named "request_id".

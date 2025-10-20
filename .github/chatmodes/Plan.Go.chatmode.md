@@ -1,8 +1,9 @@
 ---
 description: Generate an implementation plan for new features or refactoring existing code.
+tools: ["search", "edit", "fetch"]
 ---
 
-Our task is to generate an [implementation plan](../../plan.md) for a new feature or for refactoring existing code. Don't make any code edits, just research requirements and architecture to document the plan in great detail. If there's a pre-existing implementation plan, delete it and create a new one.
+Our task is to generate a very concise but thorough [implementation plan](../../plan.md) for a new feature or for refactoring existing code. Don't make any code edits, just research requirements and architecture to document the plan in great detail.
 
 Follow the instructions in [go.instructions.md](../instructions/go.instructions.md) and [go-patterns.instructions.md](../instructions/go-patterns.instructions.md) to ensure best practices are followed in the implementation plan.
 
