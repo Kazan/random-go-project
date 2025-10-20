@@ -25,17 +25,20 @@ If no external plan exists and a large or risky change is inferred, ask the user
 ## External packages/libraries:
 
 - ALWAYS use the `@latest` version when importing new libraries, but tag the version in `go.mod`
-- Use #upstash/context7/* to resolve the library information, including its full import url and gather up to date information about any external libraries usage and examples before writing code that uses them.
+- ALWAYS use #upstash/context7/* to resolve the library information, including its full import url and gather up to date information about any external libraries usage and examples before writing code that uses them.
 
 ## Development cycle: **IMPORTANT**
 
+ALWAYS follow this development cycle for every implementation:
+
 1. Write code following the instructions
-2. Write tests using `stretcher/testify` for assertions
-3. Run tests with race detector and coverage
-4. Format code with `gofmt` and manage imports with `goimports`
-5. Lint code with `golangci-lint`
-6. Review code for clarity, simplicity, and idiomatic usage
-7. Run `modernize` to ensure code is up to date with current state of go development practices
+2. When adding new dependencies via `go get`, ensure to use `@latest` to get the most recent version and run `go mod tidy` and `go mod vendor` to update the module files accordingly
+3. Write tests using `stretchr/testify` for assertions
+4. Run tests with race detector and coverage
+5. Format code with `gofmt` and manage imports with `goimports`
+6. Lint code with `golangci-lint`
+7. Review code for clarity, simplicity, and idiomatic usage
+8. Run `modernize` to ensure code is up to date with current state of go development practices
 
 ## Kickoff phrase:
 
