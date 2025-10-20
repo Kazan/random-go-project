@@ -52,7 +52,7 @@ When the user asks to "implement" a feature/refactor, perform the following exac
    - Run `golangci-lint run` with repo config.
    - Address all errors; may ignore documented false positives (state rationale).
 8. Modernize
-   - Run: `modernize` and capture suggestions.
+   - Run: `modernize` including the directories being modified (e.g. `./...`, `pkg/<package_name>`, etc) and capture suggestions.
    - Review for usage of latest Go features applicable (e.g., `sync.WaitGroup.Go` if Go >=1.25, `errors.Join`, new stdlib APIs).
 9. Diagnostics
    - Re-run `golangci-lint run` and `go vet ./...` (if not implicitly via lint) for final pass.
