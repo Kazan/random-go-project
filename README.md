@@ -46,6 +46,31 @@ func main() {
 }
 ```
 
+### Request ID Logging (Optional)
+
+Add request ID logging by wrapping with `RequestIDMiddleware`. Provide a logger
+and optionally override the header name (default `myth-tracer-id`). Missing or
+empty headers produce no log output.
+
+```go
+handler, err := middleware.RequestIDMiddleware(mux,
+    middleware.WithLogger(log.Default()),
+    middleware.WithHeaderName("X-Request-ID"),
+)
+if err != nil {
+    log.Fatal(err)
+}
+if err := http.ListenAndServe(":8080", handler); err != nil {
+    log.Fatal(err)
+}
+```
+
+Log line format:
+
+```
+request_id=<value> method=<METHOD> path=<PATH>
+```
+
 ## API
 
 ```go
