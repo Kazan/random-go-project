@@ -185,7 +185,7 @@ Context is for request-scoped values, cancellation signals, and deadlines. Follo
 
 ## Library/Packages usage
 
-ALWAYS use #upstash/context7/* to gather up to date information about libraries usage.
+**ALWAYS** use #upstash/context7/* to gather up to date information about libraries usage examples before attempting to write code that uses any library. Include relevant usage examples in your implementation plan.
 
 ## Type Safety and Language Features
 
@@ -357,7 +357,7 @@ ALWAYS use #upstash/context7/* to gather up to date information about libraries 
 - Name tests descriptively using `TestFunctionNameScenario`
 - Use subtests with `t.Run` for better organization
 - Test both success and error cases
-- Always use `testify` library for test assertions and requirements
+- **ALWAYS** use `testify` library for test assertions and requirements, do not use only the standard library testing package
 
 ### Test Helpers
 

@@ -55,16 +55,16 @@ func New(config Config) (*Type, error) {
 - prefer this approach for packages with many configuration options or when options are optional
 - Define an `Option` type as a function that modifies the configuration
 - Provide `WithX` functions for each configuration option
-- Create a `New(opts ...Option) (*Type, error)` constructor function that applies the options
-- Attempt to split the options into their own file in the package, e.g. `options.go` in order to improve readability
+- Create a `New(opts ...Option) (*Type, error)` constructor function that applies the options while validating them. The `Option` functions should return an error if the value is invalid
+- Split the options into their own file in a package, e.g. `options.go` in order to improve readability
 
 e.g.
 
 ```go
 
 cfg struct {
-    Name   string
-    Debug  bool
+    name   string
+    debug  bool
     cli   *http.Client
 }
 
@@ -75,7 +75,7 @@ func WithName(name string) Option {
         if name == "" {
             return errors.New("name cannot be empty")
         }
-        c.Name = name
+        c.name = name
         return nil
     }
 }
@@ -99,5 +99,11 @@ func New(opts ...Option) (*Type, error) {
     }
 
     // ...
+
+    return &Type{/* ... */}, nil
 }
 ```
+
+### Package code structure
+
+- **ALWAYS** Split files into smaller ones based on functionality (e.g., `handlers.go`, `models.go`, `utils.go`, `options.go`, etc.) to improve readability and maintainability.
