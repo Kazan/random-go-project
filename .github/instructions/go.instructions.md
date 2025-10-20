@@ -24,6 +24,16 @@ Follow idiomatic Go practices and community standards when writing Go code. Thes
 - Write comments in English by default; translate only upon user request
 - Avoid using emoji in code and comments
 
+## Development cycle
+
+1. Write code following these instructions
+2. Write tests using `stretcher/testify` for assertions
+3. Run tests with race detector and coverage
+4. Format code with `gofmt` and manage imports with `goimports`
+5. Lint code with `golangci-lint`
+6. Review code for clarity, simplicity, and idiomatic usage
+7. Run `modernize` to ensure code is up to date with current state of go development practices
+
 ## Naming Conventions
 
 ### Packages
@@ -185,7 +195,7 @@ Context is for request-scoped values, cancellation signals, and deadlines. Follo
 
 ## Library/Packages usage
 
-**ALWAYS** use #upstash/context7/* tool to gather up to date information about libraries usage examples before attempting to write code that uses any library. Include relevant usage examples in your implementation plan.
+**ALWAYS** use #upstash/context7/\* tool to gather up to date information about libraries usage examples before attempting to write code that uses any library. Include relevant usage examples in your implementation plan.
 
 ## Type Safety and Language Features
 
