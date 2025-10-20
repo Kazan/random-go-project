@@ -27,19 +27,39 @@ If no external plan exists and a large or risky change is inferred, ask the user
 - ALWAYS use the `@latest` version when importing new libraries, but tag the version in `go.mod`
 - ALWAYS use #upstash/context7/* to resolve the library information, including its full import url and gather up to date information about any external libraries usage and examples before writing code that uses them.
 
-## Development cycle: **IMPORTANT**
+## IMPLEMENT ACTIONS (Deterministic Execution)
 
-ALWAYS follow this development cycle for every implementation:
+When the user asks to "implement" a feature/refactor, perform the following exact ordered steps before concluding the task. Treat each as mandatory unless the repository state makes it inapplicable (note any skipped step explicitly in the final summary):
 
-1. Write code following the instructions
-2. When adding new dependencies via `go get`, ensure to use `@latest` to get the most recent version and run `go mod tidy` and `go mod vendor` to update the module files accordingly
-3. Write tests using `stretchr/testify` for assertions
-4. Run tests with race detector and coverage
-5. Format code with `gofmt` and manage imports with `goimports`
-6. Lint code with `golangci-lint`
-7. Review code for clarity, simplicity, and idiomatic usage
-8. Run `modernize` to ensure code is up to date with current state of go development practices
+1. Plan
+   - If a plan (`plan.md`) exists: load and convert it into a todo list. Otherwise create a concise initial todo list.
+   - Mark only one todo in-progress at a time.
+2. Context gathering
+   - Read all directly related files BEFORE editing.
+   - Read instruction files relevant to Go if not already read in session.
+3. Code implementation
+   - Apply minimal cohesive patches; avoid unrelated changes.
+   - Keep public surface minimal and idiomatic.
+4. Dependencies
+   - For any new dependency: `go get <module>@latest`, then `go mod tidy`, then `go mod vendor` (if vendor directory is used).
+5. Formatting
+   - Run `gofmt` and `goimports` (or ensure editor tooling did so) after each substantial change batch.
+6. Tests
+   - Add/modify table-driven tests using `stretchr/testify`.
+   - Run: `go test -race -cover ./...` and capture coverage.
+   - Fix failures immediately; iterate until green.
+7. Lint
+   - Run `golangci-lint run` with repo config.
+   - Address all errors; may ignore documented false positives (state rationale).
+8. Modernize
+   - Run: `modernize` and capture suggestions.
+   - Review for usage of latest Go features applicable (e.g., `sync.WaitGroup.Go` if Go >=1.25, `errors.Join`, new stdlib APIs).
+9. Diagnostics
+   - Re-run `golangci-lint run` and `go vet ./...` (if not implicitly via lint) for final pass.
+10. Summary output
+    - Provide PASS/FAIL for: Build, Lint, Tests.
+    - List changed files with one-line purpose.
+    - Note any skipped/omitted steps and why.
+    - Provide next-step suggestions (CI, docs, examples) when value-add is low risk.
 
-## Kickoff phrase:
-
-Before starting, output exactly: I'm going all in! — then begin execution.
+Kickoff Reminder: Always start implementation responses with exactly: `I'm going all in!` (verbatim) before performing actions.
