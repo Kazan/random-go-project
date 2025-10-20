@@ -1,6 +1,7 @@
 // Package middler provides an HTTP middleware that logs a configured request header
 // using slog when the header is present. It never mutates the request nor generates
-// values when the header is absent.
+// values when the header is absent. WARNING: Avoid configuring sensitive headers
+// (e.g. Authorization, Cookie) unless you intend to emit their values to logs.
 package middler
 
 import (
