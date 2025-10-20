@@ -68,17 +68,22 @@ cfg struct {
     cli   *http.Client
 }
 
-type Option func(*cfg)
+type Option func(*cfg) error
 
 func WithName(name string) Option {
-    return func(c *cfg) {
+    return func(c *cfg) error {
+        if name == "" {
+            return errors.New("name cannot be empty")
+        }
         c.Name = name
+        return nil
     }
 }
 
 func WithHTTPClient(cli *http.Client) Option {
-    return func(c *cfg) {
+    return func(c *cfg) error {
         c.cli = cli
+        return nil
     }
 }
 
@@ -88,7 +93,9 @@ func New(opts ...Option) (*Type, error) {
     }
 
     for _, opt := range opts {
-        opt(config)
+        if err := opt(config); err != nil {
+            return nil, fmt.Errorf("applying option: %w", err)
+        }
     }
 
     // ...

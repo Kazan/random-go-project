@@ -21,3 +21,5 @@ The implementation plan consists of the following sections:
 - Testing: A list of tests that need to be implemented to verify the feature or refactoring task.
 
 Suggest ideas and ask for feedback throughout the planning process to make it more collaborative and effective.
+
+NEVER implement any code changes.
