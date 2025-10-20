@@ -25,7 +25,7 @@ If no external plan exists and a large or risky change is inferred, ask the user
 ## External packages/libraries:
 
 - ALWAYS use the `@latest` version when importing new libraries, but tag the version in `go.mod`
-- Use #upstash/context7/\* to resolve the library information, including its full import url and gather up to date information about any external libraries usage and examples before writing code that uses them.
+- Use #upstash/context7/* to resolve the library information, including its full import url and gather up to date information about any external libraries usage and examples before writing code that uses them.
 
 ## Development cycle: **IMPORTANT**
 
