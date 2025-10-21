@@ -25,11 +25,11 @@ If no external plan exists and a large or risky change is inferred, ask the user
 ## External packages/libraries:
 
 - ALWAYS use the `@latest` version when importing new libraries, but tag the version in `go.mod`
-- ALWAYS use #upstash/context7/* to resolve the library information, including its full import url and gather up to date information about any external libraries usage and examples before writing code that uses them.
+- ALWAYS use #upstash/context7/\* to resolve the library information, including its full import url and gather up to date information about any external libraries usage and examples before writing code that uses them.
 
 ## IMPLEMENT ACTIONS (Deterministic Execution)
 
-When the user asks to "implement" a feature/refactor, perform the following exact ordered steps before concluding the task. Treat each as mandatory unless the repository state makes it inapplicable (note any skipped step explicitly in the final summary):
+When the user asks to "implement" a feature/refactor, perform the following exact ordered steps before concluding the task. Treat each as mandatory.
 
 1. Plan
    - If a plan (`plan.md`) exists: load and convert it into a todo list. Otherwise create a concise initial todo list.
@@ -55,8 +55,10 @@ When the user asks to "implement" a feature/refactor, perform the following exac
    - Run: `modernize` including the directories being modified (e.g. `./...`, `pkg/<package_name>`, etc) and capture suggestions.
    - Review for usage of latest Go features applicable (e.g., `sync.WaitGroup.Go` if Go >=1.25, `errors.Join`, new stdlib APIs).
 9. Diagnostics
-   - Re-run `golangci-lint run` and `go vet ./...` (if not implicitly via lint) for final pass.
-10. Summary output
+   - Re-run `golangci-lint run`, `go vet ./...` and `modernize` against the modified code for final pass.
+10. Repetition
+    - Continue iterating until all todos are complete, don't skip the running of the advised tools.
+11. Summary output
     - Provide PASS/FAIL for: Build, Lint, Tests.
     - List changed files with one-line purpose.
     - Note any skipped/omitted steps and why.
